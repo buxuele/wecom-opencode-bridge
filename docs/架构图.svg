@@ -1,0 +1,97 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="760" viewBox="0 0 1200 760" font-family="-apple-system, PingFang SC, Microsoft YaHei, sans-serif">
+  <defs>
+    <marker id="a" markerWidth="10" markerHeight="10" refX="9" refY="3.2" orient="auto">
+      <path d="M0,0 L9,3.2 L0,6.4 Z" fill="#5b6470"/>
+    </marker>
+    <marker id="ap" markerWidth="10" markerHeight="10" refX="9" refY="3.2" orient="auto">
+      <path d="M0,0 L9,3.2 L0,6.4 Z" fill="#fc0377"/>
+    </marker>
+  </defs>
+
+  <rect width="1200" height="760" fill="#ffffff"/>
+
+  <text x="40" y="58" font-size="30" font-weight="600" fill="#111418">企业微信到 OpenCode 的消息链路</text>
+  <text x="40" y="94" font-size="16" fill="#5b6470">手机是终端，电脑上的常驻桥接进程负责搬运、渲染与保活</text>
+
+  <!-- 手机 -->
+  <rect x="40" y="140" width="250" height="330" rx="18" fill="#fff6fa" stroke="#fc0377" stroke-width="2"/>
+  <text x="165" y="182" font-size="21" font-weight="600" fill="#111418" text-anchor="middle">手机企业微信</text>
+  <line x1="70" y1="200" x2="260" y2="200" stroke="#fc0377" stroke-width="1" opacity="0.35"/>
+  <text x="70" y="234" font-size="16" fill="#2c3239">发一句话就是 prompt</text>
+  <text x="70" y="266" font-size="16" fill="#2c3239">回复气泡里看输出</text>
+  <text x="70" y="298" font-size="16" fill="#2c3239">帮助菜单 1 与 2</text>
+  <text x="70" y="330" font-size="16" fill="#2c3239">危险操作点按钮确认</text>
+  <text x="70" y="362" font-size="16" fill="#2c3239">任务完成主动通知</text>
+  <text x="70" y="418" font-size="14" fill="#7c848f">单聊与群聊同一条链路</text>
+  <text x="70" y="442" font-size="14" fill="#7c848f">无需公网 IP 与回调地址</text>
+
+  <!-- WebSocket 通道 -->
+  <line x1="290" y1="265" x2="410" y2="265" stroke="#fc0377" stroke-width="2.5" marker-end="url(#ap)"/>
+  <line x1="410" y1="330" x2="290" y2="330" stroke="#5b6470" stroke-width="2" marker-end="url(#a)"/>
+  <text x="350" y="248" font-size="15" fill="#fc0377" text-anchor="middle">文本上行</text>
+  <text x="350" y="356" font-size="15" fill="#5b6470" text-anchor="middle">气泡下行</text>
+  <text x="350" y="392" font-size="13" fill="#7c848f" text-anchor="middle">WebSocket</text>
+  <text x="350" y="412" font-size="13" fill="#7c848f" text-anchor="middle">长连接，强制直连</text>
+
+  <!-- 桥进程 -->
+  <rect x="410" y="140" width="470" height="470" rx="18" fill="#f7fbf1" stroke="#9adb37" stroke-width="2"/>
+  <text x="645" y="182" font-size="21" font-weight="600" fill="#111418" text-anchor="middle">bridge.py 常驻进程</text>
+  <line x1="440" y1="200" x2="850" y2="200" stroke="#9adb37" stroke-width="1" opacity="0.5"/>
+
+  <rect x="440" y="222" width="200" height="66" rx="10" fill="#ffffff" stroke="#cfd8c0"/>
+  <text x="540" y="250" font-size="16" font-weight="600" fill="#111418" text-anchor="middle">wecom_link</text>
+  <text x="540" y="274" font-size="14" fill="#5b6470" text-anchor="middle">长连接与断线重连</text>
+
+  <rect x="650" y="222" width="200" height="66" rx="10" fill="#ffffff" stroke="#cfd8c0"/>
+  <text x="750" y="250" font-size="16" font-weight="600" fill="#111418" text-anchor="middle">session_router</text>
+  <text x="750" y="274" font-size="14" fill="#5b6470" text-anchor="middle">按 chatid 映射会话</text>
+
+  <rect x="440" y="302" width="200" height="66" rx="10" fill="#ffffff" stroke="#cfd8c0"/>
+  <text x="540" y="330" font-size="16" font-weight="600" fill="#111418" text-anchor="middle">opencode_client</text>
+  <text x="540" y="354" font-size="14" fill="#5b6470" text-anchor="middle">发 prompt，订阅事件</text>
+
+  <rect x="650" y="302" width="200" height="66" rx="10" fill="#ffffff" stroke="#cfd8c0"/>
+  <text x="750" y="330" font-size="16" font-weight="600" fill="#111418" text-anchor="middle">renderer 与 throttle</text>
+  <text x="750" y="354" font-size="14" fill="#5b6470" text-anchor="middle">降级 markdown，节流分段</text>
+
+  <rect x="440" y="382" width="200" height="66" rx="10" fill="#ffffff" stroke="#cfd8c0"/>
+  <text x="540" y="410" font-size="16" font-weight="600" fill="#111418" text-anchor="middle">quick_menu</text>
+  <text x="540" y="434" font-size="14" fill="#5b6470" text-anchor="middle">菜单编号当快捷键</text>
+
+  <rect x="650" y="382" width="200" height="66" rx="10" fill="#ffffff" stroke="#cfd8c0"/>
+  <text x="750" y="410" font-size="16" font-weight="600" fill="#111418" text-anchor="middle">activity 与 weather</text>
+  <text x="750" y="434" font-size="14" fill="#5b6470" text-anchor="middle">会话动态，日期天气</text>
+
+  <rect x="440" y="462" width="410" height="62" rx="10" fill="#ffffff" stroke="#cfd8c0"/>
+  <text x="645" y="488" font-size="15" fill="#2c3239" text-anchor="middle">看门狗、单实例锁、进度提醒、权限卡片回传</text>
+  <text x="645" y="510" font-size="14" fill="#5b6470" text-anchor="middle">日志双写 logs/bridge.log 与 logs/chat.jsonl</text>
+
+  <text x="645" y="558" font-size="14" fill="#7c848f" text-anchor="middle">只做客户端，不启动第二个服务</text>
+  <text x="645" y="580" font-size="14" fill="#7c848f" text-anchor="middle">LaunchAgent 托管，崩溃后自动重启</text>
+
+  <!-- HTTP 通道 -->
+  <line x1="880" y1="265" x2="990" y2="265" stroke="#fc0377" stroke-width="2.5" marker-end="url(#ap)"/>
+  <line x1="990" y1="330" x2="880" y2="330" stroke="#5b6470" stroke-width="2" marker-end="url(#a)"/>
+  <text x="935" y="248" font-size="15" fill="#fc0377" text-anchor="middle">POST</text>
+  <text x="935" y="224" font-size="13" fill="#7c848f" text-anchor="middle">prompt</text>
+  <text x="935" y="356" font-size="15" fill="#5b6470" text-anchor="middle">SSE</text>
+  <text x="935" y="376" font-size="13" fill="#7c848f" text-anchor="middle">/api/event</text>
+
+  <!-- OpenCode -->
+  <rect x="990" y="140" width="170" height="330" rx="18" fill="#f4f6f8" stroke="#8b939d" stroke-width="2"/>
+  <text x="1075" y="182" font-size="20" font-weight="600" fill="#111418" text-anchor="middle">OpenCode</text>
+  <line x1="1016" y1="200" x2="1134" y2="200" stroke="#8b939d" stroke-width="1" opacity="0.5"/>
+  <text x="1075" y="236" font-size="16" fill="#2c3239" text-anchor="middle">本地共享服务</text>
+  <text x="1075" y="262" font-size="15" fill="#5b6470" text-anchor="middle">127.0.0.1</text>
+  <text x="1075" y="286" font-size="15" fill="#5b6470" text-anchor="middle">只监听本机</text>
+  <text x="1075" y="330" font-size="16" fill="#2c3239" text-anchor="middle">真跑任务</text>
+  <text x="1075" y="356" font-size="16" fill="#2c3239" text-anchor="middle">读写代码</text>
+  <text x="1075" y="382" font-size="16" fill="#2c3239" text-anchor="middle">决定权限</text>
+  <text x="1075" y="430" font-size="14" fill="#7c848f" text-anchor="middle">生命周期不归桥管</text>
+
+  <!-- 底部说明 -->
+  <line x1="40" y1="650" x2="1160" y2="650" stroke="#e2e6ea" stroke-width="1"/>
+  <text x="40" y="686" font-size="15" fill="#2c3239">消息只作为 prompt 转发，桥不解析指令、不执行命令</text>
+  <text x="40" y="714" font-size="15" fill="#2c3239">企业微信硬限制：主动推送要求用户先说过一句话，单条流式消息十分钟内必须收尾</text>
+  <text x="40" y="742" font-size="14" fill="#7c848f">本图按仓库现有代码与文档绘制，对应 bridge.py、src 各模块与 docs/项目说明书.md</text>
+</svg>
